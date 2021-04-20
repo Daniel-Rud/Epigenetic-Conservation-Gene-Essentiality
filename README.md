@@ -1,5 +1,5 @@
-# HOX-Preferential-Epigenetic-Conservation
-Data and Materials for Preferential Epigenetic Conservation of HOXA and HOXB Genes In Human Intestinal Crypts and Endometrial Glands
+# Epigenetic Conservation Correlates With Gene Essentiality
+Data and Materials for Epigenetic Conservation Correlates With Gene Essentiality.
 
 
 #### LINKS TO DATA FILES ########################################################################
