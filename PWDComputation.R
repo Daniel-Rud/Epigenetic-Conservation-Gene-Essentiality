@@ -6,7 +6,7 @@ library(gnn)
 
 
 # important to note, this formulation requires number of samples per observation to be the same! 
-# if samples are nto the same, need to change, and change averaging procedure (since diff samp sizes)
+# if samples are not the same, need to change, and change averaging procedure (since diff samp sizes)
 
 CpGPWD = function(data,name, Observations, Samples, outputFile)
 {
@@ -109,8 +109,13 @@ CpGPWD = function(data,name, Observations, Samples, outputFile)
       individualGeneAvgPwd[j,i] = genepwd 
     }
   }
-  
-  individualGeneAvgPwd[,numObs+1] = rowSums(individualGeneAvgPwd[, 1:numObs])/numObs # Average Gene PWD
+  if(numObs>1)
+  {
+    individualGeneAvgPwd[,numObs+1] = rowSums(individualGeneAvgPwd[, 1:numObs])/numObs  # Average Gene PWD
+  }else
+  {
+    individualGeneAvgPwd[,numObs+1] = individualGeneAvgPwd[, 1]
+  }
   
   data = cbind(data,individualGeneAvgPwd)
   ########################################################################
@@ -203,9 +208,6 @@ save(uterusGld ,file="uterusGld.rda")
 EpicArrays= read_excel("list of all EPIC arrays 3-18.xls")
 save(EpicArrays,file="EpicArrays.rda")
 
-
-testData= read_excel("testData.xlsx")
-save(testData,file="testData.rda")
 ################################################################################################
 
 
