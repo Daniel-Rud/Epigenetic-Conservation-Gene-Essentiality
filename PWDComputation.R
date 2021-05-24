@@ -11,9 +11,10 @@ library(gnn)
 CpGPWD = function(data,name, Observations, Samples, outputFile)
 {
   # Set Variables For Loop
-  numObs = Observations
   
-  numSamples= Samples
+  numObs = Observations # number of individuals studied
+  
+  numSamples= Samples # number of samples per individual 
   
   combinations = combinations(numSamples, 2) # all possible pairwise combinations 
   
@@ -25,7 +26,7 @@ CpGPWD = function(data,name, Observations, Samples, outputFile)
   
   for(i in 1:numObs)
   {
-    pairs = combinations + (i-1)*4   #generate columns for pairwise differences
+    pairs = combinations + (i-1)*numSamples   #generate columns for pairwise differences
     
     pwd = abs(data[pairs[,1]] - data[pairs[,2]])  #compute abs val of pairwise difference
     # will generate Choose(samples, 2) cols
@@ -195,6 +196,7 @@ library(readxl)
 
 #Save data locally in R objects
 
+
 siPWD = read_excel("all 8 SI PWD 10-20.xlsx")
 siPWD[24] = c()
 save(siPWD,file="siPWD.rda")
@@ -215,7 +217,7 @@ save(EpicArrays,file="EpicArrays.rda")
 
 
 
-load("allColonNewAnnot.rda")
+load("allColonNew.rda")
 
 CpGPWD(allColon, "allColon", 8, 4, "allColonNew.rda")
 
@@ -225,7 +227,7 @@ write.csv(allColon, "allColonNew.csv")
 
 
 
-load("siPWDNewAnnot.rda")
+load("siPWDNew.rda")
 
 CpGPWD(siPWD, "siPWD", 4, 4, "siPWDNew.rda")
 
@@ -235,7 +237,7 @@ write.csv(siPWD, "siPWDNew.csv")
 
 
 
-load("uterusGldNewAnnot.rda")
+load("uterusGldNew.rda")
 
 CpGPWD(uterusGld, "uterusGld", 8, 4, "uterusGldNew.rda")
 
